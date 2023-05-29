@@ -1,0 +1,13 @@
+<section class="container mb-4">
+  <div id="pageTitle" class="col text-center fw-bold h2">
+    {{pageTitle}}
+  </div>
+
+  <div class="row row-cols-3 justify-content-lg-between gy-4 gx-3 m-0 justify-content-around">
+    <app-card *ngFor="let product of products" [product]="product"></app-card>
+  </div>
+
+  <div  *ngIf="loading" class="loader-bg">
+    <div class="loader"></div>
+  </div>
+</section>

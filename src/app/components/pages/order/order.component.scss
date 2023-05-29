@@ -1,0 +1,39 @@
+.invalid-feedback{
+  display: block;
+}
+
+.no-arrow {
+  -moz-appearance: textfield;
+}
+.no-arrow::-webkit-inner-spin-button {
+  display: none;
+}
+.no-arrow::-webkit-outer-spin-button,
+.no-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// remove form smoothly
+
+form.successfulResponse{
+  transition-duration: 2s;
+  transform: translate(0, -2000px);
+}
+
+button:disabled{
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+
+#thanks{
+  cursor: pointer;
+  transition-duration: 1s;
+  &:hover{
+    background-color: rgba(184, 205, 245, 0.7);
+  }
+}
+
+
+
