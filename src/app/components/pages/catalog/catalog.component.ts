@@ -26,15 +26,12 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.subscription = HeaderComponent.subject.subscribe({
       next: (value) => {
         this.searchValue = value;
-        console.log('search')
         this.renderProducts();
       }
     })
 
-    console.log(this.searchValue)
 
     if (!this.searchValue) {
-      console.log('default')
 
       this.renderProducts();
     }

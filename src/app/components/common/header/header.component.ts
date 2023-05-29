@@ -18,21 +18,11 @@ export class HeaderComponent {
   }
 
   async searchProducts(){
-    // SearchService.searchProducts(this.searchValue)
-
-
-    console.log('search service start')
 
     await this.router.navigate(['/catalog']);
 
-    console.log('search service middle')
-
     HeaderComponent.subject.next(this.searchValue);
 
-    console.log('search service end')
-
-
-    // CatalogComponent.searchValue = this.searchValue;
   }
 
 }
