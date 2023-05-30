@@ -101,7 +101,7 @@ export class OrderComponent {
     form.addClass('successfulResponse');
     form.fadeOut(2000);
 
-    $('html, body').animate({scrollTop: 0}, 'fast');
+    // $('html, body').animate({scrollTop: 0}, 'fast');
   }
 
 }

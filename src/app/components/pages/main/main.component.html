@@ -1,12 +1,12 @@
-<div class="container mt-5">
-  <div class="d-flex justify-content-center">
-    <img class="w-75" ngSrc="../../../../assets/images/main-tea.png" alt="main-tea" height="500" width="1318">
+<div class="container m-5 d-flex justify-content-center">
+  <div class="d-flex justify-content-center" id="main-tea-wrapper">
+    <img class="w-75" ngSrc="../../../../assets/images/main-tea.png" id="main-tea" alt="main-tea" height="640" width="1318">
   </div>
 </div>
 
 
 
-<section class="container wow animate__rollIn">
+<section class="container">
   <div class="col text-center fw-bold h2 py-5">
     Ответы на часто задаваемые вопросы
   </div>
@@ -104,25 +104,19 @@
   </div>
 </section>
 
-
-<!-- Кнопка-триггер модального окна -->
-<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWindow">-->
-<!--  Запустите демо модального окна-->
-<!--</button>-->
-
 <!-- Модальное окно -->
-<div class="modal fade" id="modalWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade show w-100" [class.active]="showPopup" id="modalWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Перейти в каталог</h5>
-        <button type="button" class="btn-close modalClose" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
         Посмотрите наши чайные коллекции!
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-secondary" (click)="closePopup()" data-bs-dismiss="modal">Закрыть</button>
         <button type="button" class="btn btn-primary" [routerLink]="'/catalog'">Перейти в каталог</button>
       </div>
     </div>

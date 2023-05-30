@@ -17,7 +17,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { MaxWordsPipe } from './pipes/max-words.pipe';
 
 // declare var $: any;
-import * as $ from "jquery"
+import * as $ from "jquery";
+import { NotFoundComponent } from './components/pages/not-found/not-found.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import * as $ from "jquery"
     OrderComponent,
     HeaderComponent,
     FooterComponent,
-    MaxWordsPipe
+    MaxWordsPipe,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

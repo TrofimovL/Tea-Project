@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, OnDestroy} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
-
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {delay, Observable, Subscription} from "rxjs";
+import {ProductService} from "../../../services/product.service";
 
 
 @Component({
@@ -8,33 +8,27 @@ import {Observable, Subscription} from "rxjs";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements AfterViewInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private observable: Observable<number>;
   private subscription: Subscription | null = null;
 
-  private popup: JQuery | null = null;
-  private body: JQuery | null = null;
+  public showPopup: boolean = false;
 
 
   constructor() {
 
-
     this.observable = new Observable<number>((observer) => {
-      let count = 0;
 
-      const interval = setInterval(() => {
-        observer.next(count++);
-      }, 10000);
+      // const timeout = setTimeout(() => {
+      //   observer.complete();
+      // }, 5000);
 
-      const timeout = setTimeout(() => {
-        observer.complete();
-      }, 10000);
+      observer.next();
 
       return {
         unsubscribe() {
-          clearInterval(interval);
-          clearTimeout(timeout);
+          // clearTimeout(timeout);
         }
       }
 
@@ -42,48 +36,37 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     })
   }
 
-
   ngAfterViewInit() {
 
-    this.subscription = this.observable.subscribe({
+
+
+  }
+
+
+  ngOnInit() {
+
+    this.subscription = this.observable.pipe(delay(500000)).subscribe({
       next: () => {
-
-        this.popup = $('#modalWindow');
-        this.body = $('body');
-
-        this.showPopup();
-
-        $('.modalClose').click('click', () => {
-          this.closePopup()
-        })
-
-
+        this.showPopup = true;
       }
     })
+
+    // console.log(ProductService.observablePopup);
+    //
+    // this.subscription = ProductService.observablePopup
+    //   .pipe(delay(5000))
+    //   .subscribe({
+    //     next: ()=>{
+    //       this.showPopup = true;
+    //       console.log(111)
+    //     }
+    //   })
+
+
   }
-
-
-  showPopup() {
-
-    this.popup?.css({'display': 'block', 'role': 'dialog', 'background-color': 'rgba(0,0,0,0.56)'})
-    setTimeout(() => {
-      this.popup?.addClass('show')
-    }, 100)
-
-    this.body?.addClass('modal-open')
-    this.body?.css({'padding-right': '15px'})
-  }
-
 
   closePopup() {
-    this.popup?.removeClass('show')
-
-    setTimeout(() => {
-      this.popup?.css({'display': 'none', 'background-color': 'rgba(0,0,0,0)'})
-    }, 100)
-
-    this.body?.removeClass('modal-open')
-    this.body?.css({'padding-right': '0'})
+    this.showPopup = false;
   }
 
   ngOnDestroy() {

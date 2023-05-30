@@ -21,26 +21,35 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private router: Router) {
 
+
+  }
+
+
+  ngOnInit() {
+
     this.loading = true;
 
-    this.subscription = HeaderComponent.subject.subscribe({
+
+    console.log(ProductService.searchInput)
+
+    this.subscription = ProductService.subjectSearchInput.subscribe({
       next: (value) => {
+
+        console.log('got it')
         this.searchValue = value;
         this.renderProducts();
       }
     })
 
 
-    if (!this.searchValue) {
+
+
+    if (!ProductService.searchInput) {
 
       this.renderProducts();
     }
 
-    this.searchValue = '';
-  }
 
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

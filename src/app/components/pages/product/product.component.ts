@@ -15,7 +15,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
 
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
+    // $('html, body').animate({ scrollTop: 0 }, 'fast');
 
     const productStr: string | null = window.localStorage.getItem("product");
 
