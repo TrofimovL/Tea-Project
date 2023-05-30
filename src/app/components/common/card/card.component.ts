@@ -11,7 +11,9 @@ export class CardComponent {
   @Input() product!: ProductType;
 
   productLocalStorage(){
-    window.localStorage.setItem("product", JSON.stringify(this.product));
+    // window.localStorage.setItem("product", JSON.stringify(this.product));
+    window.localStorage.setItem("productId", this.product.id.toString());
+
   }
 
 

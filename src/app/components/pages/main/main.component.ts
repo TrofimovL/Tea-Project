@@ -20,26 +20,16 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.observable = new Observable<number>((observer) => {
 
-      // const timeout = setTimeout(() => {
-      //   observer.complete();
-      // }, 5000);
-
       observer.next();
 
       return {
         unsubscribe() {
-          // clearTimeout(timeout);
         }
       }
-
-
     })
   }
 
   ngAfterViewInit() {
-
-
-
   }
 
 
@@ -50,19 +40,6 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showPopup = true;
       }
     })
-
-    // console.log(ProductService.observablePopup);
-    //
-    // this.subscription = ProductService.observablePopup
-    //   .pipe(delay(5000))
-    //   .subscribe({
-    //     next: ()=>{
-    //       this.showPopup = true;
-    //       console.log(111)
-    //     }
-    //   })
-
-
   }
 
   closePopup() {
@@ -72,6 +49,4 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
-
-
 }

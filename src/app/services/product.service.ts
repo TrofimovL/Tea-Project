@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, Subject} from "rxjs";
 import {ProductType} from "../types/product.type";
+import {HttpService} from "./http.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,27 @@ export class ProductService {
     ProductService.subjectSearchInput = new Subject<string>();
   }
 
-  getProducts(filter:string = ''):Observable<ProductType[]>{
-    return this.http.get<ProductType[]>('https://testologia.site/tea' + (filter ? ('?search=' + filter) : ''))
+  // getProducts():Observable<ProductType[]>{
+  //   return this.http.get<ProductType[]>('https://testologia.site/tea')
+  // }
+
+  getProductsWithFilter(filter: string): Observable<ProductType[]> {
+    return this.http.get<ProductType[]>('https://testologia.ru/tea' + (filter ? ('?search=' + filter) : ''))
+    // return HttpService.teaWithFilter(filter)
   }
 
 
+  getProduct(id: number | string | null) {
 
-
+    if (id) {
+      if (typeof id === 'number') {
+        id = id.toString();
+      }
+      return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
+      // return HttpService.teaProduct(id);
+    }
+    return null;
+  }
 
 
 }

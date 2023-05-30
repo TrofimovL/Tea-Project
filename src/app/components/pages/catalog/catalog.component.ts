@@ -3,7 +3,6 @@ import {ProductService} from "../../../services/product.service";
 import {ProductType} from "../../../types/product.type";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {HeaderComponent} from "../../common/header/header.component";
 
 @Component({
   selector: 'app-catalog',
@@ -21,16 +20,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private router: Router) {
 
+    // Если всё из конструктора перенести в OnInit, то поиск из главной страницы не будет работать.
 
-  }
-
-
-  ngOnInit() {
+    console.log('on init started')
 
     this.loading = true;
-
-
-    console.log(ProductService.searchInput)
 
     this.subscription = ProductService.subjectSearchInput.subscribe({
       next: (value) => {
@@ -41,13 +35,16 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }
     })
 
-
-
-
-    if (!ProductService.searchInput) {
-
+    if (!this.searchValue) {
       this.renderProducts();
     }
+
+    console.log('on init finished')
+
+  }
+
+
+  ngOnInit() {
 
 
   }
@@ -57,7 +54,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   renderProducts() {
-    this.productService.getProducts(this.searchValue).subscribe({
+    this.productService.getProductsWithFilter(this.searchValue).subscribe({
       next: (products) => {
 
         this.products = Object.values(products);

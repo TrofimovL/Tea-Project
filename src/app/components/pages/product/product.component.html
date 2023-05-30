@@ -11,7 +11,7 @@
       <h1 class="pb-4">{{product.title}}</h1>
       <p>{{product.description}}</p>
       <div>
-        <a [routerLink]="'/order'" class="btn btn-primary p-3 w-100 align-items-center fs-4 mb-3">Купить</a>
+        <a [routerLink]="['/order', product.id]" class="btn btn-primary p-3 w-100 align-items-center fs-4 mb-3">Купить</a>
       </div>
     </div>
   </div>

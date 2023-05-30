@@ -18,24 +18,13 @@ export class HeaderComponent {
     HeaderComponent.subject = new Subject<string>();
   }
 
-  searchProducts() {
+  async searchProducts() {
     console.log(1)
-    ProductService.searchInput = this.searchValue;
-    // console.log(ProductService.subjectSearchInput)
+    await this.router.navigate(['/catalog']);
+    console.log(2)
+    // ProductService.searchInput = this.searchValue;
     ProductService.subjectSearchInput.next(this.searchValue)
-
-
     console.log(3)
-
-
-    // HeaderComponent.subject.next(this.searchValue);
-
-    this.router.navigate(['/catalog']);
-    console.log(4)
-
-
-
-    // ProductService.searchInput = '';
 
   }
 

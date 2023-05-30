@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {ProductType} from "../../../types/product.type";
 import {CustomValidatorsService} from "../../../services/custom-validators.service";
 import {HttpClient} from "@angular/common/http";
+import {ProductService} from "../../../services/product.service";
+import {HttpService} from "../../../services/http.service";
 
 @Component({
   selector: 'app-order',
@@ -21,32 +23,70 @@ export class OrderComponent {
 
 
   form = this.fb.group({
-    title: [''],
-    firstName: ['', [Validators.required, CustomValidatorsService.onlyLettersValidator]],
-    lastName: ['', [Validators.required, CustomValidatorsService.onlyLettersValidator]],
+    product: [''],
+    name: ['', [Validators.required, CustomValidatorsService.onlyLettersValidator]],
+    last_name: ['', [Validators.required, CustomValidatorsService.onlyLettersValidator]],
     phone: ['', [Validators.required, CustomValidatorsService.phoneNumberValidator]],
     country: ['', [Validators.required, CustomValidatorsService.onlyLettersValidator]],
-    index: ['', [Validators.required]],
+    zip: ['', [Validators.required]],
     address: ['', [Validators.required, CustomValidatorsService.addressValidator]],
     comment: [''],
   })
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  get name(){
+    return this.form.get('name')
+  }
+
+  get last_name(){
+    return this.form.get('last_name')
+  }
+
+
+  get phone(){
+    return this.form.get('phone')
+  }
+
+
+  get country(){
+    return this.form.get('country')
+  }
+
+
+  get zip(){
+    return this.form.get('zip')
+  }
+
+  get address(){
+    return this.form.get('address')
+  }
+
+
+
+
+  constructor(private fb: FormBuilder,
+              private http: HttpClient,
+              private productService: ProductService) {
 
     $('html, body').animate({scrollTop: 0});
 
-    const productStr: string | null = window.localStorage.getItem("product");
-    if (productStr) {
-      this.product = JSON.parse(productStr);
-      this.form.patchValue({
-        title: this.product?.title
+    const id = window.location.href.split('order/')[1];
+    if (id) {
+      this.productService.getProduct(id)?.subscribe({
+        next: (product) => {
+          this.product = product;
+          // console.log(product)
+          this.form.patchValue({
+            product: this.product?.title
+          })
+        }
       })
     }
-
-    // $('#formButton').click(()=>{
-    // })
-
   }
+
+
+
+
+
 
   formButtonClick() {
     if (this.form.valid) {
@@ -56,24 +96,12 @@ export class OrderComponent {
     }
   }
 
-
   sendRequest() {
 
     this.inProcess = '';
 
-    const body = {
-      name: this.form.get('firstName')?.value,
-      last_name: this.form.get('lastName')?.value,
-      phone: this.form.get('phone')?.value,
-      country: this.form.get('country')?.value,
-      zip: this.form.get('index')?.value,
-      product: this.form.get('title')?.value,
-      address: this.form.get('address')?.value,
-      comment: this.form.get('comment')?.value,
-    }
-
-    this.http.post('https://testologia.site/order-tea', body)
-      .subscribe({
+    // HttpService.orderTea(this.form.value).subscribe({
+    this.http.post('https://testologia.site/order-tea', this.form.value).subscribe({
         next: () => {
           this.isValid = true;
           this.errorOccurred = false;
@@ -100,8 +128,6 @@ export class OrderComponent {
     const form = $('form');
     form.addClass('successfulResponse');
     form.fadeOut(2000);
-
-    // $('html, body').animate({scrollTop: 0}, 'fast');
   }
 
 }
