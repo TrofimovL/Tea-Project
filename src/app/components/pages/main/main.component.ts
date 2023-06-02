@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {delay, Observable, Subscription} from "rxjs";
-import {ProductService} from "../../../services/product.service";
 
 
 @Component({
@@ -35,7 +34,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
-    this.subscription = this.observable.pipe(delay(500000)).subscribe({
+    this.subscription = this.observable.pipe(delay(10000)).subscribe({
       next: () => {
         this.showPopup = true;
       }

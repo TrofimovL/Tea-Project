@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {ProductService} from "../../../services/product.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product',
@@ -12,7 +11,8 @@ export class ProductComponent implements OnInit {
 
   public product!: ProductType;
 
-  private subscription: Subscription | null = null;
+  public loading: boolean = false;
+
 
   constructor(
     private productService: ProductService,
@@ -22,29 +22,19 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loading = true;
+
     const id = window.location.href.split('catalog/')[1];
 
     if (id) {
       this.productService.getProduct(id)?.subscribe({
-        next: (product) => {
+        next: (product: ProductType) => {
           this.product = product;
+          this.loading = false;
         }
       })
     }
 
-
-    // this.productService.getProduct(window.localStorage.getItem("productId"))?.subscribe({
-    //     next: (product)=>{
-    //       this.product = product;
-    //     }
-    //   })
-
-
-    // const productStr: string | null = window.localStorage.getItem("product");
-    //
-    // if (productStr) {
-    //   this.product = JSON.parse(productStr);
-    // }
   }
 
 }

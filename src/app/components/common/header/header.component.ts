@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {ProductService} from "../../../services/product.service";
 
@@ -12,19 +11,12 @@ export class HeaderComponent {
 
   searchValue: string = ''
 
-  public static subject: Subject<string>;
-
-  constructor(private router: Router) {
-    HeaderComponent.subject = new Subject<string>();
+  constructor(private router: Router, private productService: ProductService) {
   }
 
-  async searchProducts() {
-    console.log(1)
-    await this.router.navigate(['/catalog']);
-    console.log(2)
-    // ProductService.searchInput = this.searchValue;
-    ProductService.subjectSearchInput.next(this.searchValue)
-    console.log(3)
+  searchProducts() {
+    this.router.navigate(['/catalog']);
+    this.productService.subj.next(this.searchValue);
 
   }
 

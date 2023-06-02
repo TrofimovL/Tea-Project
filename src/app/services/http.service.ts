@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProductType} from "../types/product.type";
@@ -8,26 +8,25 @@ import {ProductType} from "../types/product.type";
 })
 export class HttpService {
 
-  static http: HttpClient;
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  static getProducts():Observable<ProductType[]>{
+  getProducts(): Observable<ProductType[]> {
     return this.http.get<ProductType[]>('https://testologia.site/tea')
   }
 
-  static teaWithFilter(filter: string): Observable<ProductType[]> {
+  teaWithFilter(filter: string): Observable<ProductType[]> {
     return this.http.get<ProductType[]>('https://testologia.ru/tea' + (filter ? ('?search=' + filter) : ''))
   }
 
 
-  static teaProduct(id: string) {
-      return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
+  teaProduct(id: number | string): Observable<ProductType> {
+    return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
   }
 
 
-  static orderTea(body: Object) {
+  orderTea(body: Object):Observable<Object> {
     return this.http.post('https://testologia.site/order-tea', body)
   }
 

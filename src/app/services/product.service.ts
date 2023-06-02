@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {ProductType} from "../types/product.type";
 import {HttpService} from "./http.service";
 
@@ -9,35 +8,23 @@ import {HttpService} from "./http.service";
 })
 export class ProductService {
 
-  public static searchInput: string = '';
-
-  public static subjectSearchInput: Subject<string>;
+  public subj: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
 
-  constructor(private http: HttpClient) {
-    ProductService.subjectSearchInput = new Subject<string>();
+  constructor(private httpService: HttpService) {
   }
 
-  // getProducts():Observable<ProductType[]>{
-  //   return this.http.get<ProductType[]>('https://testologia.site/tea')
-  // }
+  getProducts(): Observable<ProductType[]> {
+    return this.httpService.getProducts();
+  }
 
   getProductsWithFilter(filter: string): Observable<ProductType[]> {
-    return this.http.get<ProductType[]>('https://testologia.ru/tea' + (filter ? ('?search=' + filter) : ''))
-    // return HttpService.teaWithFilter(filter)
+    return this.httpService.teaWithFilter(filter);
   }
 
 
-  getProduct(id: number | string | null) {
-
-    if (id) {
-      if (typeof id === 'number') {
-        id = id.toString();
-      }
-      return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
-      // return HttpService.teaProduct(id);
-    }
-    return null;
+  getProduct(id: number | string): Observable<ProductType> {
+    return this.httpService.teaProduct(id);
   }
 
 
