@@ -7,12 +7,13 @@ import {ProductService} from "../../../services/product.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent{
 
   searchValue: string = ''
 
   constructor(private router: Router, private productService: ProductService) {
   }
+
 
   searchProducts() {
     this.router.navigate(['/catalog']);

@@ -16,7 +16,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { MaxWordsPipe } from './pipes/max-words.pipe';
 
-// declare var $: any;
 import * as $ from "jquery";
 import { NotFoundComponent } from './components/pages/not-found/not-found.component'
 

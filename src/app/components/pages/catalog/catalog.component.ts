@@ -60,11 +60,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
         }
       })
 
-    // if (!this.searchValue) {
-    //   this.renderProducts();
-    // }
-
-
   }
 
   ngOnDestroy() {

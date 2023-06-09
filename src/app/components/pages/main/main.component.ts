@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {delay, Observable, Subscription} from "rxjs";
 
 
@@ -7,29 +7,17 @@ import {delay, Observable, Subscription} from "rxjs";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MainComponent implements OnInit, OnDestroy {
 
-  private observable: Observable<number>;
+  private observable: Observable<number> = new Observable<number>((observer)=>{observer.next()});
   private subscription: Subscription | null = null;
 
   public showPopup: boolean = false;
 
 
   constructor() {
-
-    this.observable = new Observable<number>((observer) => {
-
-      observer.next();
-
-      return {
-        unsubscribe() {
-        }
-      }
-    })
   }
 
-  ngAfterViewInit() {
-  }
 
 
   ngOnInit() {

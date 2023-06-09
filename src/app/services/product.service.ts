@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {ProductType} from "../types/product.type";
-import {HttpService} from "./http.service";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,20 @@ export class ProductService {
   public subj: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
 
-  constructor(private httpService: HttpService) {
+  constructor(private http: HttpClient) {
   }
 
   getProducts(): Observable<ProductType[]> {
-    return this.httpService.getProducts();
+    return this.http.get<ProductType[]>('https://testologia.site/tea')
   }
 
   getProductsWithFilter(filter: string): Observable<ProductType[]> {
-    return this.httpService.teaWithFilter(filter);
+    return this.http.get<ProductType[]>('https://testologia.ru/tea' + (filter ? ('?search=' + filter) : ''))
   }
 
 
-  getProduct(id: number | string): Observable<ProductType> {
-    return this.httpService.teaProduct(id);
+  getProduct(id: string): Observable<ProductType> {
+    return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
   }
 
 
