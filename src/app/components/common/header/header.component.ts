@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ProductService} from "../../../services/product.service";
 
@@ -7,11 +7,15 @@ import {ProductService} from "../../../services/product.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   searchValue: string = ''
 
   constructor(private router: Router, private productService: ProductService) {
+  }
+
+  ngOnInit() {
+
   }
 
   searchProducts() {

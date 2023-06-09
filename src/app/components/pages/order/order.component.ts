@@ -1,24 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ProductType} from "../../../types/product.type";
 import {CustomValidatorsService} from "../../../services/custom-validators.service";
 import {ProductService} from "../../../services/product.service";
-import {HttpService} from "../../../services/http.service";
+import {HttpClient} from "@angular/common/http";
+import {Subscription, switchMap} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit, OnDestroy{
 
   product: ProductType | null = null;
+
+  private subscription: Subscription | undefined;
 
   isValid: boolean = true;
   errorOccurred: boolean = false;
   successfulResponse: boolean = false;
 
-  inProcess: string | null = null;
+  inProcess: boolean = false;
 
   form = this.fb.group({
     product: [''],
@@ -60,27 +64,37 @@ export class OrderComponent {
 
 
   constructor(private fb: FormBuilder,
-              private httpService: HttpService,
-              private productService: ProductService) {
+              private http: HttpClient,
+              private productService: ProductService,
+              private activatedRoute: ActivatedRoute
+  ) {
+  }
 
+  ngOnInit() {
     $('html, body').animate({scrollTop: 0});
 
-    const id: string = window.location.href.split('order/')[1];
-    if (id) {
-      this.productService.getProduct(id)?.subscribe({
-        next: (product: ProductType) => {
-          this.product = product;
-          this.form.patchValue({
-            product: this.product?.title
-          })
-        }
-      })
-    }
+    this.subscription = this.activatedRoute.params
+      .pipe(
+        switchMap((params) => {
+          return this.productService.getProduct(params['id']);
+        })
+      )
+      .subscribe(product => {
+        this.product = product;
+        this.form.patchValue({
+          product: this.product?.title
+        })
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
 
-  formButtonClick(): void {
-    if (this.form.valid) {
+  formButtonClick():void {
+    if (this.form.valid
+    ) {
       this.sendRequest();
     } else {
       this.isValid = false;
@@ -89,14 +103,16 @@ export class OrderComponent {
 
   sendRequest(): void {
 
-    this.inProcess = '';
+    this.inProcess = true;
 
-    this.httpService.orderTea(this.form.value).subscribe({
+    this.http.post('https://testologia.site/order-tea', this.form.value).subscribe({
       next: () => {
+        $('html, body').animate({scrollTop: 0});
+
         this.isValid = true;
         this.errorOccurred = false;
         this.successfulResponse = true;
-        this.inProcess = null;
+        this.inProcess = false;
 
         this.removeFormSmoothly();
 
@@ -104,7 +120,7 @@ export class OrderComponent {
       error: () => {
         this.errorOccurred = true;
         this.successfulResponse = false;
-        this.inProcess = null;
+        this.inProcess = false;
 
         setTimeout(() => {
           this.errorOccurred = false;
@@ -114,7 +130,7 @@ export class OrderComponent {
   }
 
 
-  removeFormSmoothly(): void {
+  removeFormSmoothly():void {
     const form = $('form');
     form.addClass('successfulResponse');
     form.fadeOut(2000);
