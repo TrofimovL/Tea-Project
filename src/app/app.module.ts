@@ -1,51 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './components/pages/main/main.component';
-import { CardComponent } from './components/common/card/card.component';
-import { CatalogComponent } from './components/pages/catalog/catalog.component';
-import { ProductComponent } from './components/pages/product/product.component';
-import { OrderComponent } from './components/pages/order/order.component';
-import { HeaderComponent } from './components/common/header/header.component';
-import { FooterComponent } from './components/common/footer/footer.component';
-import {NgOptimizedImage} from "@angular/common";
-import {ProductService} from "./services/product.service";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { MaxWordsPipe } from './pipes/max-words.pipe';
-
+import {SharedModule} from "./shared/shared.module";
+import {FeatureModule} from "./feature/feature.module";
+import {CoreModule} from "./core/core.module";
+import {FooterComponent} from "./shared/layout/footer/footer.component";
+import {HeaderComponent} from "./shared/layout/header/header.component";
 import * as $ from "jquery";
-import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    CardComponent,
-    CatalogComponent,
-    ProductComponent,
-    OrderComponent,
-    HeaderComponent,
     FooterComponent,
-    MaxWordsPipe,
-    NotFoundComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NgOptimizedImage,
-    // FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
+
+    CoreModule,
+    SharedModule,
+    FeatureModule,
+
+    AppRoutingModule,
     FormsModule,
-    NgbModule
   ],
-  providers: [
-    ProductService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
