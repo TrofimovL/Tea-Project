@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {ProductType} from "../types/product.type";
+import {ProductType} from "../../../types/product.type";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -25,6 +25,10 @@ export class ProductService {
 
   getProduct(id: string): Observable<ProductType> {
     return this.http.get<ProductType>(`https://testologia.site/tea?id=${id}`)
+  }
+
+  sendOrder(formBody: any):Observable<Object>{
+    return this.http.post('https://testologia.site/order-tea', formBody);
   }
 
 

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
+import {ProductService} from "../../core/services/product.service";
 import {ProductType} from "../../../types/product.type";
 import {Router} from "@angular/router";
 import {Subscription, switchMap, tap} from "rxjs";
