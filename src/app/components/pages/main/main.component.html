@@ -1,9 +1,9 @@
 <div class="container m-5 d-flex justify-content-center">
   <div class="d-flex justify-content-center" id="main-tea-wrapper">
-    <img class="w-75" ngSrc="../../../../assets/images/main-tea.png" id="main-tea" alt="main-tea" height="640" width="1318">
+    <img class="w-75" ngSrc="../../../../assets/images/main-tea.png" id="main-tea" alt="main-tea" height="640"
+         width="1318">
   </div>
 </div>
-
 
 
 <section class="container">
@@ -11,33 +11,29 @@
     Ответы на часто задаваемые вопросы
   </div>
 
-  <div class="accordion col-lg-8 mx-auto" id="accordionPanelsStayOpenExample">
-    <div class="accordion-item pb-3 border-0 mx-auto">
-      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-        <button class="accordion-button bg-primary rounded-3 text-white shadow-none" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne">
+
+  <div ngbAccordion [closeOthers]="true"  class="col-lg-8 mx-auto" id="accordionPanelsStayOpenExample">
+    <div ngbAccordionItem [collapsed]="false" class="pb-3 border-0 mx-auto">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-primary rounded-3 text-white shadow-none">
           Собираете ли вы подарочные боксы?
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-           aria-labelledby="panelsStayOpen-headingOne">
-        <div class="accordion-body">
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
           Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и стоимость!
         </div>
       </div>
     </div>
-    <div class="accordion-item pb-3 border-0 mx-auto">
-      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-        <button class="collapsed accordion-button bg-primary rounded-3 text-white shadow-none" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseTwo">
+
+    <div ngbAccordionItem [collapsed]="true" class="pb-3 border-0 mx-auto">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-primary rounded-3 text-white shadow-none">
           Сколько у вас разновидностей чая?
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-           aria-labelledby="panelsStayOpen-headingTwo">
-        <div class="accordion-body">
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus id minima, modi molestiae
           provident quidem saepe? Consectetur dolore harum illum incidunt quam quia repudiandae sed sit?
           Distinctio in nam qui!
@@ -46,17 +42,14 @@
     </div>
 
 
-    <div class="accordion-item pb-3 border-0 mx-auto">
-      <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-        <button class="collapsed accordion-button bg-primary rounded-3 text-white shadow-none" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseThree">
+    <div ngbAccordionItem [collapsed]="true" class="pb-3 border-0 mx-auto">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-primary rounded-3 text-white shadow-none">
           В какой срок осуществляется доставка?
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-           aria-labelledby="panelsStayOpen-headingThree">
-        <div class="accordion-body">
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus id minima, modi molestiae
           provident quidem saepe? Consectetur dolore harum illum incidunt quam quia repudiandae sed sit?
           Distinctio in nam qui!
@@ -64,19 +57,14 @@
       </div>
     </div>
 
-
-
-    <div class="accordion-item pb-3 border-0 mx-auto">
-      <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-        <button class="collapsed accordion-button bg-primary rounded-3 text-white shadow-none" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseFour">
+    <div ngbAccordionItem [collapsed]="true" class="pb-3 border-0 mx-auto">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-primary rounded-3 text-white shadow-none">
           У вас обновляется ассортимент?
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
-           aria-labelledby="panelsStayOpen-headingFour">
-        <div class="accordion-body">
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus id minima, modi molestiae
           provident quidem saepe? Consectetur dolore harum illum incidunt quam quia repudiandae sed sit?
           Distinctio in nam qui!
@@ -84,17 +72,14 @@
       </div>
     </div>
 
-    <div class="accordion-item pb-3 border-0 mx-auto">
-      <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-        <button class="collapsed accordion-button bg-primary rounded-3 text-white shadow-none" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseFive">
+    <div ngbAccordionItem [collapsed]="true" class="pb-3 border-0 mx-auto">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-primary rounded-3 text-white shadow-none">
           Какого объема у вас пачки чая?
         </button>
       </h2>
-      <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
-           aria-labelledby="panelsStayOpen-headingFive">
-        <div class="accordion-body">
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus id minima, modi molestiae
           provident quidem saepe? Consectetur dolore harum illum incidunt quam quia repudiandae sed sit?
           Distinctio in nam qui!
@@ -105,12 +90,14 @@
 </section>
 
 <!-- Модальное окно -->
-<div class="modal fade show w-100" [class.active]="showPopup" id="modalWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade show w-100" [class.active]="showPopup" id="modalWindow" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Перейти в каталог</h5>
-        <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal"
+                aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
         Посмотрите наши чайные коллекции!

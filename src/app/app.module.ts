@@ -17,7 +17,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { MaxWordsPipe } from './pipes/max-words.pipe';
 
 import * as $ from "jquery";
-import { NotFoundComponent } from './components/pages/not-found/not-found.component'
+import { NotFoundComponent } from './components/pages/not-found/not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
     // FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     ProductService
