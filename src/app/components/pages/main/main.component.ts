@@ -1,5 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {delay, Observable, Subscription} from "rxjs";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 
 @Component({
@@ -9,31 +10,45 @@ import {delay, Observable, Subscription} from "rxjs";
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  private observable: Observable<number> = new Observable<number>((observer)=>{observer.next()});
+  private observable: Observable<number> = new Observable<number>((observer) => {
+    observer.next()
+  });
   private subscription: Subscription | null = null;
 
   public showPopup: boolean = false;
 
+  @ViewChild('popup') popup: ElementRef | undefined;
 
-  constructor() {
+
+  constructor(private modalService: NgbModal) {
   }
 
-
-
   ngOnInit() {
-
-    this.subscription = this.observable.pipe(delay(10000)).subscribe({
+    this.subscription = this.observable.pipe(delay(10e3)).subscribe({
       next: () => {
         this.showPopup = true;
       }
     })
   }
 
-  closePopup() {
-    this.showPopup = false;
-  }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
+
+  closePopup() {
+    this.showPopup = false;
+
+    this.subscription = this.observable.pipe(delay(30e3)).subscribe({
+      next: () => {
+        this.open(this.popup);
+      }
+    })
+  }
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+
 }

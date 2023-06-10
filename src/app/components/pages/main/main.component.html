@@ -90,14 +90,12 @@
 </section>
 
 <!-- Модальное окно -->
-<div class="modal fade show w-100" [class.active]="showPopup" id="modalWindow" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade show w-100" [class.active]="showPopup" id="modalWindow">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Перейти в каталог</h5>
-        <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal"
-                aria-label="Закрыть"></button>
+        <h5 class="modal-title">Перейти в каталог</h5>
+        <button type="button" class="btn-close" (click)="closePopup()"></button>
       </div>
       <div class="modal-body">
         Посмотрите наши чайные коллекции!
@@ -109,3 +107,20 @@
     </div>
   </div>
 </div>
+
+<ng-template #popup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Перейти в каталог</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    Точно не хотите посмотреть наши чайные коллекции?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn w-100 btn-primary" [routerLink]="'/catalog'" (click)="modal.dismiss()">Перейти в каталог</button>
+  </div>
+</ng-template>
+
+
+
+
