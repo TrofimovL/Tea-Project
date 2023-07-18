@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MaxWordsPipe} from "./pipes/max-words.pipe";
 import {RouterModule} from "@angular/router";
 import {CardComponent} from "./card/card.component";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {CardComponent} from "./card/card.component";
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
   ],
   exports:[
     MaxWordsPipe,

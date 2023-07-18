@@ -10,7 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  private observable: Observable<number> = new Observable<number>((observer) => {
+  private observable: Observable<void> = new Observable<void>((observer) => {
     observer.next()
   });
   private subscription: Subscription | null = null;
