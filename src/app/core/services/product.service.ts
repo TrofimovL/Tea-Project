@@ -3,9 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ProductType} from "../../../types/product.type";
 import {HttpClient} from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductService {
 
   public subj: BehaviorSubject<string> = new BehaviorSubject<string>('');

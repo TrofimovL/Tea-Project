@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {ProductType} from "../../../types/product.type";
-import {CustomValidatorsService} from "../../core/services/custom-validators.service";
-import {ProductService} from "../../core/services/product.service";
+import {ProductType} from "../../../../types/product.type";
+import {CustomValidatorsService} from "../../../core/services/custom-validators.service";
+import {ProductService} from "../../../core/services/product.service";
 import {HttpClient} from "@angular/common/http";
 import {Subscription, switchMap} from "rxjs";
 import {ActivatedRoute} from "@angular/router";

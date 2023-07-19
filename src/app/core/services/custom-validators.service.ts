@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomValidatorsService {
 
   static onlyLettersValidator(control: AbstractControl):ValidationErrors | null{
