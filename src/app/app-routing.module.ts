@@ -3,20 +3,17 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from "./app.component";
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-    children:[
-      {path: '', loadChildren: ()=> import('./feature/main/main.module').then(m => m.MainModule)},
-      {path: 'catalog', loadChildren: ()=> import('./feature/products/products.module').then(m => m.ProductsModule)},
-      {path: 'order', loadChildren: ()=> import('./feature/order/order.module').then(m => m.OrderModule)},
-    ]
-  },
+  // {
+  //   path: '',
+  //   component: AppComponent,
+  //   children: [
+  {path: '', loadChildren: () => import('./feature/main/main.module').then(m => m.MainModule)},
+  {path: 'catalog', loadChildren: () => import('./feature/products/products.module').then(m => m.ProductsModule)},
+  {path: 'order', loadChildren: () => import('./feature/order/order.module').then(m => m.OrderModule)},
+  // ]
+  // },
 
-  {
-    path: '**',
-    redirectTo: 'not-found'
-  }
+  {path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

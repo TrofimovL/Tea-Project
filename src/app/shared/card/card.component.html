@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title text-center">{{product.title}}</h5>
-    <h5 class="card-title text-center">{{product.price}}</h5>
+    <h5 class="card-title text-center">{{product.price | currency : 'руб.' }}</h5>
     <p class="card-text">{{product.description | maxWords}}</p>
     <a [routerLink]="['product']" [queryParams]="{'id': product.id}" class="btn btn-primary">Подробнее</a>
   </div>

@@ -8,9 +8,13 @@
     <div class="row" >
       <div class="col-5">
         <img id="product-image" src="{{product.image}}" style="aspect-ratio: 1/1" alt="Card image {{product.id}}">
+
+        <h4 class="text-center pb-3">{{product.price | currency : 'руб.' }}</h4>
+
         <div>
           <a [routerLink]="'/catalog'" class="btn btn-primary w-100 bg-black border-dark mb-3">Вернуться обратно</a>
         </div>
+
       </div>
       <div class="col-6">
         <h1 class="pb-4">{{product.title}}</h1>
